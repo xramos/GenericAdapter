@@ -10,6 +10,29 @@ Pre-requisites
 - Android Build Tools v25.0.2
 - Android Support Repository
 
+Download
+--------
+
+Add it in your root build.gradle at the end of repositories:
+
+```groovy
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}Copy
+
+```
+
+Add the dependency
+
+```groovy
+dependencies {
+  compile 'com.github.xramos:GenericAdapter:1.0.0'
+}
+```
+
 License
 -------
 
