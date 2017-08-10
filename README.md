@@ -10,18 +10,18 @@ Pre-requisites
 - Android Build Tools v25.0.2
 - Android Support Repository
 
-Download
---------
+Installation
+------------
 
 Add it in your root build.gradle at the end of repositories:
 
 ```groovy
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}Copy
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+}
 
 ```
 
