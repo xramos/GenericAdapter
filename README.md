@@ -65,7 +65,6 @@ public class StringAdapter extends GenericAdapter<String, StringViewHolder> {
   }
 
   @Override
-  @Override
   public StringViewHolder createViewHolder(View itemView) {
 	  return new StringViewHolder(itemView);
   }
