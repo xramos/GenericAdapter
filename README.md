@@ -17,10 +17,10 @@ Add it in your root build.gradle at the end of repositories:
 
 ```groovy
 allprojects {
-	repositories {
-		...
-		maven { url 'https://jitpack.io' }
-	}
+  repositories {
+	  ...
+	  maven { url 'https://jitpack.io' }
+  }
 }
 
 ```
@@ -41,18 +41,34 @@ Create a ViewHolder that inherits from GenericViewHolder
 ```groovy
 public class StringViewHolder extends GenericViewHolder<String> {
 	
-	public TextView txtView;
+  public TextView txtView;
 
-	StringViewHolder(View itemView) {
-		super(itemView);
-		txtView = (TextView)itemView.findViewById(R.id.txtView);
-	}
+  public StringViewHolder(View itemView) {
+	  super(itemView);
+	  txtView = (TextView)itemView.findViewById(R.id.txtView);
+  }
 
-	@Override
-	public void bind(String model) {
+  @Override
+  public void bind(String model) {
+	  txtView.setText(model);
+  }
+}
+```
 
-		txtView.setText(model);
-	}
+Create an Adapter that inherits from GenericAdapter
+
+```groovy
+public class StringAdapter extends GenericAdapter<String, StringViewHolder> {
+	
+  public StringAdapter(Context ctx, int layoutId, List<String> objects) {
+    super(ctx, layoutId, objects);
+  }
+
+  @Override
+  @Override
+  public StringViewHolder createViewHolder(View itemView) {
+	  return new StringViewHolder(itemView);
+  }
 }
 ```
 
@@ -61,14 +77,14 @@ Create a RecyclerAdapter that inherits from GenericRecyclerView
 ```groovy
 public class StringAdapter extends GenericRecyclerAdapter<String, StringViewHolder> {
 	
-	public StirngAdapter(Context ctx, int layoutId, List<String> objects) {
-		super(ctx, layoutId, objects);
-	}
+  public StirngAdapter(Context ctx, int layoutId, List<String> objects) {
+   	  super(ctx, layoutId, objects);
+  }
 
-	@Override
-	public StringViewHolder createViewHolder(View itemView) {
-		return new StringViewHolder(itemView);
-	}
+  @Override
+  public StringViewHolder createViewHolder(View itemView) {
+	  return new StringViewHolder(itemView);
+  }
 }
 ```
 
@@ -77,34 +93,55 @@ You can implement OnRecyclerViewItemClickListener on your Activity like this:
 ```groovy
 public class StringActivity extends AppCompatActivity implements OnRecyclerViewItemClickListener<String> {
 	
-	...
+  ...
 
-	@Override
-	public void onItemClick(View view, String model) {
-		//Implement OnRecyclerViewItmeClick
-	}
+  @Override
+  public void onItemClick(View view, String model) {
+	  //Implement OnRecyclerViewItmeClick
+  }
 }
 ```
 
-You can implement EndlessRecyclerViewScrollListener on your Activity like this:
+You can implement OnRecyclerViewScrollListener on your Activity like this:
 
 ```groovy
 public class StringActivity extends AppCompatActivity implements OnRecyclerViewItemClickListener<String> {
 	
-	...
+  ...
 
-	RecyclerView rView;
-	LinearLayoutManager rManager;
+  RecyclerView rView;
+  LinearLayoutManager rManager;
 
-	...
+  ...
 
-	rView.addOnScrollListener(new EndlessRecyclerViewScrollListener(rManager) {
-		@Override
-		public void onLoadMore(int page, int totalItemsCount) {
-			// Triggered only when new data needs to be appended to the list
-			//Add whatever code is needed to append new items to the bottom of the list
-		}
-	});
+  rView.addOnScrollListener(new OnRecyclerViewScrollListener(rManager) {
+	  @Override
+	  public void onLoadMore(int page, int totalItemsCount) {
+		  // Triggered only when new data needs to be appended to the list
+		  //Add whatever code is needed to append new items to the bottom of the list
+	  }
+  });
+}
+```
+
+You can implement OnListViewScrollListener on your Activity like this:
+
+```groovy
+public class StringActivity extends AppCompatActivity {
+	
+  ...
+
+  ListView listView;
+
+  ...
+
+  listView.setOnScrollListener(new OnListViewScrollListener() {
+    @Override
+    public void onLoadMore(int page, int totalItemsCount) {
+      // Triggered only when new data needs to be appended to the list
+      //Add whatever code is needed to append new items to the bottom of the list
+    }
+  });
 }
 ```
 
