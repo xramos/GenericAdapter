@@ -1,7 +1,12 @@
-package com.xramos.genericadapterlib.adapters;
+package com.xramos.genericadapter.adapters;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
+import com.xramos.genericadapter.viewholders.GenericViewHolder;
 
 import java.util.List;
 
@@ -11,7 +16,7 @@ import java.util.List;
  * Created by xramos on 10/8/17.
  */
 
-public abstract class GenericAdapter<T> extends BaseAdapter {
+public abstract class GenericAdapter<T, V extends GenericViewHolder<T>> extends BaseAdapter {
 
     protected Context context;
     protected int layoutId;
@@ -65,4 +70,38 @@ public abstract class GenericAdapter<T> extends BaseAdapter {
     public final long getItemId(final int position) {
         return position;
     }
+
+    /**
+     * Get view
+     * @param position position
+     * @param convertView view to convert
+     * @param parent parent
+     * @return current view
+     */
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+        GenericViewHolder<T> holder;
+
+        if (convertView == null) {
+            convertView = LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false);
+            holder = createViewHolder(convertView);
+            convertView.setTag(holder);
+        } else {
+            holder = (GenericViewHolder<T>)convertView.getTag();
+        }
+
+        T model = objects.get(position);
+
+        holder.bind(model);
+
+        return convertView;
+    }
+
+    /**
+     * Creates GenericViewHolder for specified itemView
+     * @param itemView view
+     * @return GenericViewHolder
+     */
+    public abstract V createViewHolder(View itemView);
 }

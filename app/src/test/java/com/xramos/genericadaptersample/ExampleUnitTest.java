@@ -1,4 +1,4 @@
-package com.xramos.genericadapter;
+package com.xramos.genericadaptersample;
 
 import org.junit.Test;
 

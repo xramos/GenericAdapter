@@ -1,4 +1,4 @@
-package com.xramos.genericadapter;
+package com.xramos.genericadaptersample;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

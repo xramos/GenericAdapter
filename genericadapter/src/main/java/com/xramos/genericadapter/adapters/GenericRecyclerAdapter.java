@@ -1,4 +1,4 @@
-package com.xramos.genericadapterlib.adapters;
+package com.xramos.genericadapter.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,8 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.xramos.genericadapterlib.listeners.OnRecyclerViewItemClickListener;
-import com.xramos.genericadapterlib.viewholders.GenericViewHolder;
+import com.xramos.genericadapter.listeners.OnRecyclerViewItemClickListener;
+import com.xramos.genericadapter.viewholders.GenericViewHolder;
 
 import java.util.List;
 

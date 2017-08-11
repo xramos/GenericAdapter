@@ -1,4 +1,4 @@
-package com.xramos.genericadapterlib.listeners;
+package com.xramos.genericadapter.listeners;
 
 import android.view.View;
 
